@@ -1,4 +1,9 @@
 {
   "HOME": "/",
-  "COUNTER": "/counter"
+  "COUNTER": "/counter",
+  "CENTROS_CUADRADOS": "/centroscuadrados",
+  "CONGRUENCIAL": "/congruencial",
+  "CONGRUENCIAL_MIXTO": "/congruencialmixto",
+  "GENERADOR_MULTIPLICATIVO": "/generadormultiplicativo",
+  "CONGRUENCIAL_LINEAL_COMBINADO": "/congruenciallinealcombinado"
 }

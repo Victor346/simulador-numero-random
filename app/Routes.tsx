@@ -4,24 +4,34 @@ import { Switch, Route } from 'react-router-dom';
 import routes from './constants/routes.json';
 import App from './containers/App';
 import HomePage from './containers/HomePage';
-
-// Lazily load routes and code split with webpack
-const LazyCounterPage = React.lazy(() =>
-  import(/* webpackChunkName: "CounterPage" */ './containers/CounterPage')
-);
-
-const CounterPage = (props: Record<string, any>) => (
-  <React.Suspense fallback={<h1>Loading...</h1>}>
-    <LazyCounterPage {...props} />
-  </React.Suspense>
-);
+import CentrosCuadradosPage from './containers/CentrosCuadradosPage';
+import CongruencialPage from './containers/CongruencialPage';
+import CongruencialMixtoPage from './containers/CongruencialMixtoPage';
+import GeneradorMultiplicativoPage from './containers/GeneradorMultiplicativoPage';
+import CongruencialLinealCombinadoPage from './containers/CongruencialLinealCombinadoPage';
 
 export default function Routes() {
   return (
     <App>
       <Switch>
-        <Route path={routes.COUNTER} component={CounterPage} />
-        <Route path={routes.HOME} component={HomePage} />
+        <Route exact path={routes.HOME} component={HomePage} />
+        <Route
+          path={routes.CENTROS_CUADRADOS}
+          component={CentrosCuadradosPage}
+        />
+        <Route path={routes.CONGRUENCIAL} component={CongruencialPage} />
+        <Route
+          path={routes.CONGRUENCIAL_MIXTO}
+          component={CongruencialMixtoPage}
+        />
+        <Route
+          path={routes.GENERADOR_MULTIPLICATIVO}
+          component={GeneradorMultiplicativoPage}
+        />
+        <Route
+          path={routes.CONGRUENCIAL_LINEAL_COMBINADO}
+          component={CongruencialLinealCombinadoPage}
+        />
       </Switch>
     </App>
   );
