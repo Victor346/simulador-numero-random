@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
+import { CentrosCuadrados } from 'random-number-gen';
 
 const CentrosCuadradosForm = () => {
   const [seed, setSeed] = useState(0);
@@ -8,6 +9,8 @@ const CentrosCuadradosForm = () => {
   const onFinish = () => {
     console.log('Seed:', seed);
     console.log('Random numbers', quantity);
+    let cc = CentrosCuadrados();
+    cc.getRandomNumbers(3443, 3)
   };
 
   return (
