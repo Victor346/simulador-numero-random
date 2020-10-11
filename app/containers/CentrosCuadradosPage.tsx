@@ -11,7 +11,9 @@ const CentrosCuadradosPage = () => {
       <SideMenu />
       <Col flex="auto">
         <Row justify="center">
-          <Title>Metodo de Centros Cuadrados</Title>
+          <Title style={{ marginTop: '15px' }}>
+            Metodo de Centros Cuadrados
+          </Title>
         </Row>
         <Row justify="center">
           <Col span={24}>

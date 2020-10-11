@@ -1,13 +1,25 @@
 import React from 'react';
-import { Col, Row } from 'antd';
+import { Col, Row, Typography } from 'antd';
 import SideMenu from '../components/sidemenu/SideMenu';
+import CongruencialLinealCombinadoForm from '../components/congruencial_combinado/CongruencialLinealCombinadoForm';
+
+const { Title } = Typography;
 
 const CongruencialLinealCombinadoPage = () => {
   return (
     <Row>
       <SideMenu />
-      <Col>
-        <h1>Congruencial Lineal Combinado page works!!!</h1>
+      <Col flex="auto">
+        <Row justify="center">
+          <Title style={{ marginTop: '15px' }}>
+            Metodo Congruencial Lineal Combinado
+          </Title>
+        </Row>
+        <Row justify="center">
+          <Col span={24}>
+            <CongruencialLinealCombinadoForm />
+          </Col>
+        </Row>
       </Col>
     </Row>
   );

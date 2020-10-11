@@ -11,7 +11,7 @@ const CongruencialPage = () => {
       <SideMenu />
       <Col flex="auto">
         <Row justify="center">
-          <Title>Metodo Congruencial</Title>
+          <Title style={{ marginTop: '15px' }}>Metodo Congruencial</Title>
         </Row>
         <Row justify="center">
           <Col span={24}>
