@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row, Typography } from 'antd';
-import SideMenu from '../components/sidemenu/SideMenu';
+import SideMenu from '../components/tools/sidemenu/SideMenu';
 import CentrosCuadradosForm from '../components/centros_cuadrados/CentrosCuadradosForm';
 
 const { Title } = Typography;
@@ -11,7 +11,9 @@ const CentrosCuadradosPage = () => {
       <SideMenu />
       <Col flex="auto">
         <Row justify="center">
-          <Title>Metodo de Centros Cuadrados</Title>
+          <Title style={{ marginTop: '15px' }}>
+            Metodo de Centros Cuadrados
+          </Title>
         </Row>
         <Row justify="center">
           <Col span={24}>

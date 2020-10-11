@@ -10,7 +10,7 @@ import {
   ContainerOutlined,
 } from '@ant-design/icons';
 import styles from './SideMenu.css';
-import routes from '../../constants/routes.json';
+import routes from '../../../constants/routes.json';
 
 const SideMenu = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -49,7 +49,7 @@ const SideMenu = () => {
         </Menu.Item>
         <Menu.Item key="4" icon={<ContainerOutlined />}>
           <Link to={routes.GENERADOR_MULTIPLICATIVO}>
-            Congruencial Multiplicativo
+            Generador Multiplicativo
           </Link>
         </Menu.Item>
         <Menu.Item key="5" icon={<ContainerOutlined />}>

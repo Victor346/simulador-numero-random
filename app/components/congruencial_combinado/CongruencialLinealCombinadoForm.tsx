@@ -1,14 +1,23 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 
-const CongruencialForm = () => {
-  const [seed, setSeed] = useState(0);
-  const [multiplier, setMultiplier] = useState(0);
+const CongruencialLinealCombinadoForm = () => {
+  const [k, setK] = useState(0);
+  const [aOne, setAOne] = useState(0);
   const [increase, setIncrease] = useState(0);
   const [module, setModule] = useState(0);
   const [quantity, setQuantity] = useState(0);
+
+  const onFinish = () => {
+    console.log('Seed:', k);
+    console.log('Multiplier', aOne);
+    console.log('Increase', increase);
+    console.log('Module', module);
+    console.log('Random numbers', quantity);
+  };
 
   const [numbers] = useState([
     4323432342,
@@ -25,7 +34,7 @@ const CongruencialForm = () => {
     89567768567,
   ]);
 
-  const feedback = {
+  const [feedback] = useState({
     chi: false,
     a1: 234890.34,
     a2: 243243.34,
@@ -35,45 +44,39 @@ const CongruencialForm = () => {
       dnegative: 3456.4564,
       a: 3435345.435,
     },
-  };
-
-  const onFinish = () => {
-    console.log('Seed:', seed);
-    console.log('Multiplier', multiplier);
-    console.log('Increase', increase);
-    console.log('Module', module);
-    console.log('Random numbers', quantity);
-  };
+  });
 
   return (
     <>
       <Row justify="center" gutter={[0, 24]}>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Semilla:</Col>
+            <Col span={8}>k:</Col>
             <Col flex="auto">
               <InputNumber
-                placeholder="Semilla"
+                placeholder="k"
                 precision={0}
                 step={1}
                 min={0}
-                value={seed}
-                onChange={(value) => setSeed(value as number)}
+                value={k}
+                onChange={(value) => setK(value as number)}
               />
             </Col>
           </Row>
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Multiplicador</Col>
+            <Col span={8}>
+              a<sub>1</sub>
+            </Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Multiplicador"
                 step={1}
                 precision={0}
                 min={0}
-                value={multiplier}
-                onChange={(value) => setMultiplier(value as number)}
+                value={aOne}
+                onChange={(value) => setAOne(value as number)}
               />
             </Col>
           </Row>
@@ -143,4 +146,4 @@ const CongruencialForm = () => {
   );
 };
 
-export default CongruencialForm;
+export default CongruencialLinealCombinadoForm;

@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
+import HullDobell from './HullDobell';
 
-const CongruencialForm = () => {
+const CongruencialMixtoForm = () => {
   const [seed, setSeed] = useState(0);
   const [multiplier, setMultiplier] = useState(0);
   const [increase, setIncrease] = useState(0);
   const [module, setModule] = useState(0);
   const [quantity, setQuantity] = useState(0);
+
+  const [hullDobellTests] = useState([false, false, false]);
 
   const [numbers] = useState([
     4323432342,
@@ -25,7 +28,7 @@ const CongruencialForm = () => {
     89567768567,
   ]);
 
-  const feedback = {
+  const [feedback] = useState({
     chi: false,
     a1: 234890.34,
     a2: 243243.34,
@@ -35,7 +38,7 @@ const CongruencialForm = () => {
       dnegative: 3456.4564,
       a: 3435345.435,
     },
-  };
+  });
 
   const onFinish = () => {
     console.log('Seed:', seed);
@@ -125,6 +128,14 @@ const CongruencialForm = () => {
             </Col>
           </Row>
         </Col>
+        <Col span={8}>
+          <Row>
+            <Col span={8}>Prueba Hull-Dobell:</Col>
+            <Col flex="auto">
+              <HullDobell tests={hullDobellTests} />
+            </Col>
+          </Row>
+        </Col>
         <Col span={4}>
           <Button block type="primary" onClick={onFinish}>
             Generar
@@ -143,4 +154,4 @@ const CongruencialForm = () => {
   );
 };
 
-export default CongruencialForm;
+export default CongruencialMixtoForm;
