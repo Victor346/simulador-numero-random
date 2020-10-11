@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row, Typography } from 'antd';
-import SideMenu from '../components/sidemenu/SideMenu';
+import SideMenu from '../components/tools/sidemenu/SideMenu';
 import CongruencialLinealCombinadoForm from '../components/congruencial_combinado/CongruencialLinealCombinadoForm';
 
 const { Title } = Typography;

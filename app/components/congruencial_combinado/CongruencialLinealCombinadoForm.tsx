@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
+import NumberList from '../tools/number_list/NumberList';
+import Feedback from '../tools/feedback/Feedback';
 
 const CongruencialLinealCombinadoForm = () => {
   const [k, setK] = useState(0);
@@ -16,6 +18,33 @@ const CongruencialLinealCombinadoForm = () => {
     console.log('Module', module);
     console.log('Random numbers', quantity);
   };
+
+  const [numbers] = useState([
+    4323432342,
+    2312312312,
+    6765756756,
+    4564564564,
+    3245345344,
+    8978968768,
+    7686787887,
+    756464566,
+    11111111,
+    4234345345,
+    2342342234,
+    89567768567,
+  ]);
+
+  const [feedback] = useState({
+    chi: false,
+    a1: 234890.34,
+    a2: 243243.34,
+    kolmogorov: false,
+    criteria: {
+      dpositive: 324234.23,
+      dnegative: 3456.4564,
+      a: 3435345.435,
+    },
+  });
 
   return (
     <>
@@ -103,6 +132,14 @@ const CongruencialLinealCombinadoForm = () => {
           <Button block type="primary" onClick={onFinish}>
             Generar
           </Button>
+        </Col>
+      </Row>
+      <Row justify="center" gutter={[48, 24]}>
+        <Col span={12} style={{ overflow: 'auto', maxHeight: '70vh' }}>
+          <NumberList numbers={numbers} />
+        </Col>
+        <Col span={12}>
+          <Feedback feedback={feedback} />
         </Col>
       </Row>
     </>

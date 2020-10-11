@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
-import NumberList from '../NumberList';
+import NumberList from '../tools/number_list/NumberList';
 
 const CentrosCuadradosForm = () => {
   const [seed, setSeed] = useState(0);

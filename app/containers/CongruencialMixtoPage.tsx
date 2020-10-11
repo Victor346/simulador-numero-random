@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row, Typography } from 'antd';
-import SideMenu from '../components/sidemenu/SideMenu';
-import CentrosCuadradosForm from '../components/centros_cuadrados/CentrosCuadradosForm';
+import SideMenu from '../components/tools/sidemenu/SideMenu';
+import CongruencialMixtoForm from '../components/congruencial_mixto/CongruencialMixtoForm';
 
 const { Title } = Typography;
 
@@ -17,7 +17,7 @@ const CongruencialMixtoPage = () => {
         </Row>
         <Row justify="center">
           <Col span={24}>
-            <CentrosCuadradosForm />
+            <CongruencialMixtoForm />
           </Col>
         </Row>
       </Col>

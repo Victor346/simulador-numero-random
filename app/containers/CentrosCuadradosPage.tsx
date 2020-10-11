@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row, Typography } from 'antd';
-import SideMenu from '../components/sidemenu/SideMenu';
+import SideMenu from '../components/tools/sidemenu/SideMenu';
 import CentrosCuadradosForm from '../components/centros_cuadrados/CentrosCuadradosForm';
 
 const { Title } = Typography;
