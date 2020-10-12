@@ -1,28 +1,17 @@
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
+import { CentrosCuadrados } from 'random-number-gen';
 import NumberList from '../tools/number_list/NumberList';
 
 const CentrosCuadradosForm = () => {
-  const [seed, setSeed] = useState(0);
+  const [seed, setSeed] = useState(100);
   const [quantity, setQuantity] = useState(0);
-  const [numbers] = useState([
-    4323432342,
-    2312312312,
-    6765756756,
-    4564564564,
-    3245345344,
-    8978968768,
-    7686787887,
-    756464566,
-    11111111,
-    4234345345,
-    2342342234,
-    89567768567,
-  ]);
+  const [numbers, setNumbers] = useState([]);
 
   const onFinish = () => {
-    console.log('Seed:', seed);
-    console.log('Random numbers', quantity);
+    const cc = new CentrosCuadrados();
+    const result = cc.getRandomNumbers(seed, quantity);
+    setNumbers(result.randoms);
   };
 
   return (
@@ -36,7 +25,7 @@ const CentrosCuadradosForm = () => {
                 placeholder="Semilla"
                 precision={0}
                 step={1}
-                min={0}
+                min={100}
                 value={seed}
                 onChange={(value) => setSeed(value as number)}
               />

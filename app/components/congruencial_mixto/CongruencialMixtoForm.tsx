@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
+
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 import HullDobell from './HullDobell';
@@ -13,20 +14,7 @@ const CongruencialMixtoForm = () => {
 
   const [hullDobellTests] = useState([false, false, false]);
 
-  const [numbers] = useState([
-    4323432342,
-    2312312312,
-    6765756756,
-    4564564564,
-    3245345344,
-    8978968768,
-    7686787887,
-    756464566,
-    11111111,
-    4234345345,
-    2342342234,
-    89567768567,
-  ]);
+  const [numbers] = useState([]);
 
   const [feedback] = useState({
     chi: false,

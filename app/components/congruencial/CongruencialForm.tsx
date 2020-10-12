@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
+import { CongruencialLineal } from 'random-number-gen';
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 
@@ -10,20 +11,9 @@ const CongruencialForm = () => {
   const [module, setModule] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
-  const [numbers] = useState([
-    4323432342,
-    2312312312,
-    6765756756,
-    4564564564,
-    3245345344,
-    8978968768,
-    7686787887,
-    756464566,
-    11111111,
-    4234345345,
-    2342342234,
-    89567768567,
-  ]);
+  const [numbers, setNumbers] = useState([]);
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(0);
 
   const feedback = {
     chi: false,
@@ -43,6 +33,18 @@ const CongruencialForm = () => {
     console.log('Increase', increase);
     console.log('Module', module);
     console.log('Random numbers', quantity);
+    const cl = new CongruencialLineal();
+    const result = cl.getRandomNumbers(
+      seed,
+      multiplier,
+      increase,
+      module,
+      quantity
+    );
+    console.log(result);
+    setNumbers(result.randoms);
+    setMin(result.min);
+    setMax(result.max);
   };
 
   return (

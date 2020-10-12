@@ -1,5 +1,6 @@
 import React from 'react';
 import { List } from 'antd';
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = { numbers: Array<number> };
 
@@ -9,10 +10,12 @@ const NumberList = ({ numbers }: Props) => {
       itemLayout="horizontal"
       bordered
       dataSource={numbers}
-      renderItem={(number) => {
+      renderItem={(number, i) => {
         return (
-          <List.Item key={number}>
-            <h2>{numbers.indexOf(number)}</h2>
+          <List.Item key={uuidv4()}>
+            <h2>
+              R<sub>{i}</sub>
+            </h2>
             <h2>{number}</h2>
           </List.Item>
         );
