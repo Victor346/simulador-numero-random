@@ -15,9 +15,17 @@ const HullDobell = ({ tests }: Props) => {
 
   return (
     <>
-      {getTag('I', 'Mensaje Hull-Dobell I', tests[0])}
-      {getTag('II', 'Mensaje Hull-Dobell II', tests[1])}
-      {getTag('III', 'Mensaje Hull-Dobell III', tests[2])}
+      {getTag(
+        'I',
+        'c (incremento) y m (modulo) son primos relativos',
+        tests[0]
+      )}
+      {getTag(
+        'II',
+        'Si q es un numero primo que divide a m, entonces q divide (a-1)',
+        tests[1]
+      )}
+      {getTag('III', 'Si 4 divide a m, entonces 4 divide (a-1)', tests[2])}
     </>
   );
 };

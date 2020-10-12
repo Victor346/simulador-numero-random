@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
-
+import { CongruencialLineal } from 'random-number-gen';
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 import HullDobell from './HullDobell';
@@ -9,12 +9,12 @@ const CongruencialMixtoForm = () => {
   const [seed, setSeed] = useState(0);
   const [multiplier, setMultiplier] = useState(0);
   const [increase, setIncrease] = useState(0);
-  const [module, setModule] = useState(0);
+  const [module, setModule] = useState(1);
   const [quantity, setQuantity] = useState(0);
 
-  const [hullDobellTests] = useState([false, false, false]);
+  const [hullDobellTests, setHullDobellTests] = useState([false, false, false]);
 
-  const [numbers] = useState([]);
+  const [numbers, setNumbers] = useState([]);
 
   const [feedback] = useState({
     chi: false,
@@ -28,12 +28,23 @@ const CongruencialMixtoForm = () => {
     },
   });
 
+  const getHullDobell = () => {
+    const cl = new CongruencialLineal();
+    const hull = cl.hullDobell(multiplier, increase, module);
+    setHullDobellTests(hull);
+  };
+
   const onFinish = () => {
-    console.log('Seed:', seed);
-    console.log('Multiplier', multiplier);
-    console.log('Increase', increase);
-    console.log('Module', module);
-    console.log('Random numbers', quantity);
+    const cl = new CongruencialLineal();
+    const result = cl.getRandomNumbers(
+      seed,
+      multiplier,
+      increase,
+      module,
+      quantity
+    );
+    setNumbers(result.randoms);
+    getHullDobell();
   };
 
   return (
@@ -41,7 +52,10 @@ const CongruencialMixtoForm = () => {
       <Row justify="center" gutter={[0, 24]}>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Semilla:</Col>
+            <Col span={8}>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              Semilla (x<sub>0</sub>):
+            </Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Semilla"
@@ -56,7 +70,7 @@ const CongruencialMixtoForm = () => {
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Multiplicador</Col>
+            <Col span={12}>Multiplicador (a):</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Multiplicador"
@@ -64,14 +78,16 @@ const CongruencialMixtoForm = () => {
                 precision={0}
                 min={0}
                 value={multiplier}
-                onChange={(value) => setMultiplier(value as number)}
+                onChange={(value) => {
+                  setMultiplier(value as number);
+                }}
               />
             </Col>
           </Row>
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Incremento</Col>
+            <Col span={12}>Incremento (c)</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Incremento"
@@ -79,22 +95,26 @@ const CongruencialMixtoForm = () => {
                 precision={0}
                 min={0}
                 value={increase}
-                onChange={(value) => setIncrease(value as number)}
+                onChange={(value) => {
+                  setIncrease(value as number);
+                }}
               />
             </Col>
           </Row>
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Modulo</Col>
+            <Col span={12}>Modulo (m)</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Modulo"
                 step={1}
                 precision={0}
-                min={0}
+                min={1}
                 value={module}
-                onChange={(value) => setModule(value as number)}
+                onChange={(value) => {
+                  setModule(value as number);
+                }}
               />
             </Col>
           </Row>

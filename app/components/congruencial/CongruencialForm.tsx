@@ -5,15 +5,15 @@ import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 
 const CongruencialForm = () => {
-  const [seed, setSeed] = useState(0);
+  const [seed, setSeed] = useState(1);
   const [multiplier, setMultiplier] = useState(0);
   const [increase, setIncrease] = useState(0);
-  const [module, setModule] = useState(0);
+  const [module, setModule] = useState(1);
   const [quantity, setQuantity] = useState(0);
 
   const [numbers, setNumbers] = useState([]);
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(0);
+  // const [min, setMin] = useState(0);
+  // const [max, setMax] = useState(0);
 
   const feedback = {
     chi: false,
@@ -28,11 +28,6 @@ const CongruencialForm = () => {
   };
 
   const onFinish = () => {
-    console.log('Seed:', seed);
-    console.log('Multiplier', multiplier);
-    console.log('Increase', increase);
-    console.log('Module', module);
-    console.log('Random numbers', quantity);
     const cl = new CongruencialLineal();
     const result = cl.getRandomNumbers(
       seed,
@@ -41,10 +36,9 @@ const CongruencialForm = () => {
       module,
       quantity
     );
-    console.log(result);
     setNumbers(result.randoms);
-    setMin(result.min);
-    setMax(result.max);
+    // setMin(result.min);
+    // setMax(result.max);
   };
 
   return (
@@ -52,7 +46,10 @@ const CongruencialForm = () => {
       <Row justify="center" gutter={[0, 24]}>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Semilla:</Col>
+            <Col span={8}>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              Semilla (x<sub>0</sub>):
+            </Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Semilla"
@@ -67,7 +64,7 @@ const CongruencialForm = () => {
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Multiplicador</Col>
+            <Col span={12}>Multiplicador (a):</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Multiplicador"
@@ -82,7 +79,7 @@ const CongruencialForm = () => {
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Incremento</Col>
+            <Col span={12}>Incremento (c):</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Incremento"
@@ -97,13 +94,13 @@ const CongruencialForm = () => {
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Modulo</Col>
+            <Col span={12}>Modulo (m):</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Modulo"
                 step={1}
                 precision={0}
-                min={0}
+                min={1}
                 value={module}
                 onChange={(value) => setModule(value as number)}
               />

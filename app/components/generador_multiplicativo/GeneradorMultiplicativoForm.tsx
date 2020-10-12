@@ -6,16 +6,13 @@ import Feedback from '../tools/feedback/Feedback';
 import Requisites from './Requisites';
 
 const GeneradorMultiplicativoForm = () => {
-  const [seed, setSeed] = useState(0);
+  const [seed, setSeed] = useState(1);
   const [multiplier, setMultiplier] = useState(0);
-  const [module, setModule] = useState(0);
+  const [module, setModule] = useState(1);
   const [quantity, setQuantity] = useState(0);
-
   const [requisiteOne, setRequisiteOne] = useState(false);
   const [requisiteTwo, setRequisiteTwo] = useState(false);
-
   const [numbers, setNumbers] = useState([]);
-
   const [feedback] = useState({
     chi: false,
     a1: 234890.34,
@@ -28,12 +25,9 @@ const GeneradorMultiplicativoForm = () => {
     },
   });
 
+  const gm = new GeneradorMultiplicativo();
+
   const onFinish = () => {
-    console.log('Seed:', seed);
-    console.log('Multiplier', multiplier);
-    console.log('Module', module);
-    console.log('Random numbers', quantity);
-    const gm = new GeneradorMultiplicativo();
     const result = gm.getRandomNumbers(seed, multiplier, module, quantity);
     setNumbers(result.randoms);
   };
@@ -52,13 +46,16 @@ const GeneradorMultiplicativoForm = () => {
       <Row justify="center" gutter={[0, 24]}>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Semilla:</Col>
+            <Col span={8}>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              Semilla (x<sub>0</sub>):
+            </Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Semilla"
                 precision={0}
                 step={1}
-                min={0}
+                min={1}
                 value={seed}
                 onChange={(value) => {
                   setSeed(value as number);
@@ -69,7 +66,7 @@ const GeneradorMultiplicativoForm = () => {
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Multiplicador:</Col>
+            <Col span={12}>Multiplicador (a):</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Multiplicador"
@@ -86,13 +83,13 @@ const GeneradorMultiplicativoForm = () => {
         </Col>
         <Col span={6}>
           <Row align="middle">
-            <Col span={8}>Modulo:</Col>
+            <Col span={12}>Modulo (m):</Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Modulo"
                 step={1}
                 precision={0}
-                min={0}
+                min={1}
                 value={module}
                 onChange={(value) => {
                   setModule(value as number);

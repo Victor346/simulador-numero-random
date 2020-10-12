@@ -23,12 +23,7 @@ const CongruencialLinealCombinadoForm = () => {
   const [numbers, setNumbers] = useState([]);
   const [maxPeriod, setMaxPeriod] = useState(0);
 
-
   const onFinish = () => {
-    console.log('k', k);
-    console.log('Random numbers', quantity);
-    console.log('generators', generators);
-
     const cc = new CongruencialCombinado();
     const result = cc.getRandomNumbers(
       {
@@ -40,7 +35,6 @@ const CongruencialLinealCombinadoForm = () => {
     setNumbers(result.randoms);
     setMaxPeriod(result.max_period);
   };
-
 
   const setDefault = () => {
     setK(2);
@@ -62,7 +56,6 @@ const CongruencialLinealCombinadoForm = () => {
     const returnList = [];
 
     const currentGenerators = generators;
-    console.log('YOLO');
     for (let i = 0; i < k; i++) {
       if (currentGenerators[i] === undefined) {
         currentGenerators[i] = {

@@ -4,12 +4,13 @@ import { CentrosCuadrados } from 'random-number-gen';
 import NumberList from '../tools/number_list/NumberList';
 
 const CentrosCuadradosForm = () => {
-  const [seed, setSeed] = useState(100);
+  const [seed, setSeed] = useState(1);
   const [quantity, setQuantity] = useState(0);
   const [numbers, setNumbers] = useState([]);
 
+  const cc = new CentrosCuadrados();
+
   const onFinish = () => {
-    const cc = new CentrosCuadrados();
     const result = cc.getRandomNumbers(seed, quantity);
     setNumbers(result.randoms);
   };
@@ -19,13 +20,17 @@ const CentrosCuadradosForm = () => {
       <Row justify="center" gutter={[0, 24]}>
         <Col span={8}>
           <Row align="middle">
-            <Col span={8}>Semilla:</Col>
+            <Col span={8}>
+              {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+              Semilla (x<sub>0</sub>):
+            </Col>
             <Col flex="auto">
               <InputNumber
                 placeholder="Semilla"
                 precision={0}
                 step={1}
-                min={100}
+                min={1}
+                max={9999}
                 value={seed}
                 onChange={(value) => setSeed(value as number)}
               />
