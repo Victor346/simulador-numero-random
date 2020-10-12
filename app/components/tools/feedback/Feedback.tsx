@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { Row, Col, Tag } from 'antd';
 
@@ -35,18 +36,12 @@ const Feedback = ({ feedback }: Props) => {
         </Col>
         <Col offset={1}>{getTag(feedback.chi)}</Col>
       </Row>
-      <Row justify="center" gutter={[0, 12]}>
+      <Row justify="center" gutter={[24, 12]}>
         <Col>
-          <h2>
-            x0:
-            {feedback.a1}
-          </h2>
+          <h2>x0: {feedback.a1}</h2>
         </Col>
-        <Col offset={1}>
-          <h2>
-            xa:
-            {feedback.a2}
-          </h2>
+        <Col>
+          <h2>xa: {feedback.a2}</h2>
         </Col>
       </Row>
       <Row justify="center" align="top" gutter={[0, 12]}>
@@ -55,37 +50,21 @@ const Feedback = ({ feedback }: Props) => {
         </Col>
         <Col offset={1}>{getTag(feedback.kolmogorov)}</Col>
       </Row>
-      <Row justify="center" gutter={[0, 12]}>
+      <Row justify="center" gutter={[24, 12]}>
         <Col>
-          <h3>
-            D+:
-            {feedback.criteria.dpositive}
-          </h3>
+          <h2>D+: {feedback.criteria.dpositive}</h2>
         </Col>
-        <Row justify="center" gutter={[0, 12]}>
-          <Col>
-            <h3>
-              D-:
-              {feedback.criteria.dnegative}
-            </h3>
-          </Col>
-        </Row>
-        <Row>
-          <Col offset={1}>
-            <h3>
-              x0:
-              {feedback.criteria.a}
-            </h3>
-          </Col>
-        </Row>
-        <Row>
-          <Col offset={1}>
-            <h3>
-              xa:
-              {feedback.criteria.tableValue}
-            </h3>
-          </Col>
-        </Row>
+        <Col>
+          <h2>D-: {feedback.criteria.dnegative}</h2>
+        </Col>
+      </Row>
+      <Row justify="center" gutter={[24, 12]}>
+        <Col>
+          <h2>x0: {feedback.criteria.a}</h2>
+        </Col>
+        <Col>
+          <h2>xa: {feedback.criteria.tableValue}</h2>
+        </Col>
       </Row>
     </>
   );

@@ -87,7 +87,10 @@ const CongruencialMixtoForm = () => {
     setNumbers(result.randoms);
     getHullDobell();
 
-    const kValidation = ks.validate(result.randoms.slice(0), kolmogorovCriteria);
+    const kValidation = ks.validate(
+      result.randoms.slice(0),
+      kolmogorovCriteria
+    );
     const ccValidation = cc.validate(result.randoms.slice(0), chiCriteria);
     setFeedback({
       chi: ccValidation.validated,
@@ -105,17 +108,23 @@ const CongruencialMixtoForm = () => {
 
   const getChiOptions = () => {
     const chiOptions: JSX.Element[] = [];
-    chiTable.forEach((value) => {
-      chiOptions.push(<Select.Option value={value}>{value}</Select.Option>);
+    chiTable.forEach((value, index) => {
+      chiOptions.push(
+        <Select.Option value={value} key={index}>
+          {value}
+        </Select.Option>
+      );
     });
     return chiOptions;
   };
 
   const getKolmogorovOptions = () => {
     const kolmogorovOptions: JSX.Element[] = [];
-    kolmogorovTable.forEach((value) => {
+    kolmogorovTable.forEach((value, index) => {
       kolmogorovOptions.push(
-        <Select.Option value={value}>{value}</Select.Option>
+        <Select.Option value={value} key={index}>
+          {value}
+        </Select.Option>
       );
     });
     return kolmogorovOptions;
@@ -234,9 +243,7 @@ const CongruencialMixtoForm = () => {
         </Col>
         <Col span={6}>
           <Row justify="center">
-            <Col>
-              Kolmogorov Criteria:
-            </Col>
+            <Col>Kolmogorov Criteria:</Col>
             <Col>
               <Select
                 defaultValue={kolmogorovCriteria}

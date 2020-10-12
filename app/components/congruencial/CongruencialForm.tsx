@@ -80,7 +80,6 @@ const CongruencialForm = () => {
       module,
       quantity
     );
-    console.log('result1', result);
     setNumbers(result.randoms);
 
     const ks = new KolmogorovSmirnov();
@@ -88,7 +87,6 @@ const CongruencialForm = () => {
       result.randoms.slice(0),
       kolmogorovCriteria
     );
-    console.log('result2', result);
     const ccValidation = cc.validate(result.randoms.slice(0), chiCriteria);
     setFeedback({
       chi: ccValidation.validated,
@@ -106,17 +104,21 @@ const CongruencialForm = () => {
 
   const getChiOptions = () => {
     const chiOptions: JSX.Element[] = [];
-    chiTable.forEach((value) => {
-      chiOptions.push(<Select.Option value={value}>{value}</Select.Option>);
+    chiTable.forEach((value, index) => {
+      chiOptions.push(
+        <Select.Option value={value} key={index}>
+          {value}
+        </Select.Option>
+      );
     });
     return chiOptions;
   };
 
   const getKolmogorovOptions = () => {
     const kolmogorovOptions: JSX.Element[] = [];
-    kolmogorovTable.forEach((value) => {
+    kolmogorovTable.forEach((value, index) => {
       kolmogorovOptions.push(
-        <Select.Option value={value}>{value}</Select.Option>
+        <Select.Option value={value} key={index}>{value}</Select.Option>
       );
     });
     return kolmogorovOptions;

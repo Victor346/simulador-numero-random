@@ -10,6 +10,26 @@ export default function Home(): JSX.Element {
   return (
     <div className={styles.container} data-tid="container">
       <Title>Simulador de numeros random</Title>
+      <Row justify="center">
+        <Col>
+          <h3>A01336986 - José Rodríguez Montoya</h3>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <h3>A01336434 - Victor Eduardo Lopez Perez</h3>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <h3>A01020706 - Fernando Ríos Chávez</h3>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <h3>A01336967 - In Joong Kim</h3>
+        </Col>
+      </Row>
       <Row gutter={[0, 32]}>
         <Col span={12} offset={6}>
           <Link to={routes.CENTROS_CUADRADOS}>
