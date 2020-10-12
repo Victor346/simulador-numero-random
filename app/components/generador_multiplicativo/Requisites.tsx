@@ -15,8 +15,8 @@ const Requisites = ({ tests }: Props) => {
 
   return (
     <>
-      {getTag('Requisito 1', 'Requisito 1 Mensaje', tests[0])}
-      {getTag('Requisito 2', 'Requisito 2 Mensaje', tests[1])}
+      {getTag('Requisito 1', 'x0, a, m >= 0', tests[0])}
+      {getTag('Requisito 2', 'm > a, m > x0', tests[1])}
     </>
   );
 };

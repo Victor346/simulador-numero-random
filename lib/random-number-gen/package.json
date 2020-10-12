@@ -1,0 +1,7 @@
+{
+  "name": "random-number-gen",
+  "version": "1.0.0",
+  "description": "Library for generating random numbers",
+  "main": "index.js",
+  "license": "MIT"
+}
