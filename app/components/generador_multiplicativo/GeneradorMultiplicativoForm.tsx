@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Button, InputNumber, Row } from 'antd';
-import { GeneradorMultiplicativo } from 'random-number-gen';
+import { Col, Button, InputNumber, Row, Select } from 'antd';
+import { GeneradorMultiplicativo, KolmogorovSmirnov, ChiCuadrada } from 'random-number-gen';
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 import Requisites from './Requisites';
@@ -13,15 +13,57 @@ const GeneradorMultiplicativoForm = () => {
   const [requisiteOne, setRequisiteOne] = useState(false);
   const [requisiteTwo, setRequisiteTwo] = useState(false);
   const [numbers, setNumbers] = useState([]);
-  const [feedback] = useState({
+
+  const [chiCriteria, setChiCriteria] = useState(0.001);
+  const [kolmogorovCriteria, setKolmogorovCriteria] = useState(0.001);
+
+  const ks = new KolmogorovSmirnov();
+  const cc = new ChiCuadrada();
+
+  const chiTable = [
+    0.001,
+    0.0025,
+    0.005,
+    0.01,
+    0.025,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    0.975,
+    0.99,
+    0.995,
+    0.9975,
+    0.999,
+  ];
+
+  const kolmogorovTable = [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2];
+
+  const [feedback, setFeedback] = useState({
     chi: false,
-    a1: 234890.34,
-    a2: 243243.34,
+    a1: 0,
+    a2: 0,
     kolmogorov: false,
     criteria: {
-      dpositive: 324234.23,
-      dnegative: 3456.4564,
-      a: 3435345.435,
+      dpositive: 0,
+      dnegative: 0,
+      a: 0,
+      tableValue: 0,
     },
   });
 
@@ -30,6 +72,39 @@ const GeneradorMultiplicativoForm = () => {
   const onFinish = () => {
     const result = gm.getRandomNumbers(seed, multiplier, module, quantity);
     setNumbers(result.randoms);
+
+    const kValidation = ks.validate(result.randoms.slice(0), kolmogorovCriteria);
+    const ccValidation = cc.validate(result.randoms.slice(0), chiCriteria);
+    setFeedback({
+      chi: ccValidation.validated,
+      a1: Math.ceil(ccValidation.result * 10000) / 10000,
+      a2: Math.ceil(ccValidation.tableValue * 10000) / 10000,
+      kolmogorov: kValidation.validated,
+      criteria: {
+        dpositive: Math.ceil(kValidation.dMax * 10000) / 10000,
+        dnegative: Math.ceil(kValidation.dMinus * 10000) / 10000,
+        a: Math.ceil(kValidation.dFinal * 10000) / 10000,
+        tableValue: Math.ceil(kValidation.tableValue * 10000) / 10000,
+      },
+    });
+  };
+
+  const getChiOptions = () => {
+    const chiOptions: JSX.Element[] = [];
+    chiTable.forEach((value) => {
+      chiOptions.push(<Select.Option value={value}>{value}</Select.Option>);
+    });
+    return chiOptions;
+  };
+
+  const getKolmogorovOptions = () => {
+    const kolmogorovOptions: JSX.Element[] = [];
+    kolmogorovTable.forEach((value) => {
+      kolmogorovOptions.push(
+        <Select.Option value={value}>{value}</Select.Option>
+      );
+    });
+    return kolmogorovOptions;
   };
 
   const handleChange = () => {
@@ -100,7 +175,7 @@ const GeneradorMultiplicativoForm = () => {
         </Col>
       </Row>
       <Row gutter={[0, 24]}>
-        <Col span={8}>
+        <Col span={6}>
           <Row align="middle">
             <Col span={8}>Cantidad de numeros:</Col>
             <Col flex="auto">
@@ -117,7 +192,7 @@ const GeneradorMultiplicativoForm = () => {
             </Col>
           </Row>
         </Col>
-        <Col span={8}>
+        <Col span={6}>
           <Row>
             <Col span={8}>Requisitos:</Col>
             <Col flex="auto">
@@ -125,6 +200,38 @@ const GeneradorMultiplicativoForm = () => {
             </Col>
           </Row>
         </Col>
+        <Col span={6}>
+          <Row justify="center" gutter={[24, 0]}>
+            <Col>Chi Cuadrada:</Col>
+            <Col>
+              <Select
+                defaultValue={chiCriteria}
+                style={{ width: 120 }}
+                onChange={(value) => setChiCriteria(value)}
+              >
+                {getChiOptions()}
+              </Select>
+            </Col>
+          </Row>
+        </Col>
+        <Col span={6}>
+          <Row justify="center">
+            <Col>
+              Kolmogorov Criteria:
+            </Col>
+            <Col>
+              <Select
+                defaultValue={kolmogorovCriteria}
+                style={{ width: 120 }}
+                onChange={(value) => setKolmogorovCriteria(value)}
+              >
+                {getKolmogorovOptions()}
+              </Select>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      <Row justify="center" gutter={[12, 24]}>
         <Col span={4}>
           <Button
             disabled={!(requisiteOne && requisiteTwo)}
@@ -136,8 +243,8 @@ const GeneradorMultiplicativoForm = () => {
           </Button>
         </Col>
       </Row>
-      <Row justify="center" gutter={[48, 24]}>
-        <Col span={12} style={{ overflow: 'auto', maxHeight: '70vh' }}>
+      <Row justify="center" gutter={[12, 24]}>
+        <Col span={12} style={{ overflow: 'auto', maxHeight: '60vh' }}>
           <NumberList numbers={numbers} />
         </Col>
         <Col span={12}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Tag, Select } from 'antd';
+import { Row, Col, Tag } from 'antd';
 
 type Props = {
   feedback: {
@@ -11,6 +11,7 @@ type Props = {
       dpositive: number;
       dnegative: number;
       a: number;
+      tableValue: number;
     };
   };
 };
@@ -37,13 +38,13 @@ const Feedback = ({ feedback }: Props) => {
       <Row justify="center" gutter={[0, 12]}>
         <Col>
           <h2>
-            a1:
+            x0:
             {feedback.a1}
           </h2>
         </Col>
         <Col offset={1}>
           <h2>
-            a2:
+            xa:
             {feedback.a2}
           </h2>
         </Col>
@@ -54,18 +55,6 @@ const Feedback = ({ feedback }: Props) => {
         </Col>
         <Col offset={1}>{getTag(feedback.kolmogorov)}</Col>
       </Row>
-      <Row justify="center" align="top" gutter={[0, 12]}>
-        <Col>
-          <h2>Criterio de aceptacion</h2>
-        </Col>
-        <Col offset={1}>
-          <Select defaultValue="lucy" style={{ width: 120 }}>
-            <Select.Option value="jack">Jack</Select.Option>
-            <Select.Option value="lucy">Lucy</Select.Option>
-            <Select.Option value="voc">Voc</Select.Option>
-          </Select>
-        </Col>
-      </Row>
       <Row justify="center" gutter={[0, 12]}>
         <Col>
           <h3>
@@ -73,18 +62,30 @@ const Feedback = ({ feedback }: Props) => {
             {feedback.criteria.dpositive}
           </h3>
         </Col>
-        <Col offset={1}>
-          <h3>
-            D+:
-            {feedback.criteria.dnegative}
-          </h3>
-        </Col>
-        <Col offset={1}>
-          <h3>
-            a:
-            {feedback.criteria.a}
-          </h3>
-        </Col>
+        <Row justify="center" gutter={[0, 12]}>
+          <Col>
+            <h3>
+              D-:
+              {feedback.criteria.dnegative}
+            </h3>
+          </Col>
+        </Row>
+        <Row>
+          <Col offset={1}>
+            <h3>
+              x0:
+              {feedback.criteria.a}
+            </h3>
+          </Col>
+        </Row>
+        <Row>
+          <Col offset={1}>
+            <h3>
+              xa:
+              {feedback.criteria.tableValue}
+            </h3>
+          </Col>
+        </Row>
       </Row>
     </>
   );
