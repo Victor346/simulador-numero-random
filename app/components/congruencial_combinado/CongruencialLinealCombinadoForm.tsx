@@ -1,7 +1,10 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row, Switch } from 'antd';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { CongruencialCombinado } from 'random-number-gen';
+import copy from 'copy-to-clipboard';
 import NumberList from '../tools/number_list/NumberList';
 
 const CongruencialLinealCombinadoForm = () => {
@@ -32,6 +35,11 @@ const CongruencialLinealCombinadoForm = () => {
       },
       quantity
     );
+    let accString = '';
+    result.randoms.forEach((num: number) => {
+      accString = `${accString + num}\n`;
+    });
+    copy(accString);
     setNumbers(result.randoms);
     setMaxPeriod(result.max_period);
   };
@@ -52,10 +60,12 @@ const CongruencialLinealCombinadoForm = () => {
     ]);
   };
 
+  // eslint-disable-next-line no-shadow
   const getInputRow = (k: number) => {
     const returnList = [];
 
     const currentGenerators = generators;
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < k; i++) {
       if (currentGenerators[i] === undefined) {
         currentGenerators[i] = {

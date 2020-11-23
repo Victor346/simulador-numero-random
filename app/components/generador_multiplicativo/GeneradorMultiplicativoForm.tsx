@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Button, InputNumber, Row, Select } from 'antd';
-import { GeneradorMultiplicativo, KolmogorovSmirnov, ChiCuadrada } from 'random-number-gen';
+import {
+  GeneradorMultiplicativo,
+  KolmogorovSmirnov,
+  ChiCuadrada,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+} from 'random-number-gen';
+import copy from 'copy-to-clipboard';
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 import Requisites from './Requisites';
@@ -71,6 +78,11 @@ const GeneradorMultiplicativoForm = () => {
 
   const onFinish = () => {
     const result = gm.getRandomNumbers(seed, multiplier, module, quantity);
+    let accString = '';
+    result.randoms.forEach((num: number) => {
+      accString = `${accString + num}\n`;
+    });
+    copy(accString);
     setNumbers(result.randoms);
 
     const kValidation = ks.validate(
@@ -96,6 +108,7 @@ const GeneradorMultiplicativoForm = () => {
     const chiOptions: JSX.Element[] = [];
     chiTable.forEach((value, index) => {
       chiOptions.push(
+        // eslint-disable-next-line react/no-array-index-key
         <Select.Option value={value} key={index}>
           {value}
         </Select.Option>
@@ -108,6 +121,7 @@ const GeneradorMultiplicativoForm = () => {
     const kolmogorovOptions: JSX.Element[] = [];
     kolmogorovTable.forEach((value, index) => {
       kolmogorovOptions.push(
+        // eslint-disable-next-line react/no-array-index-key
         <Select.Option value={value} key={index}>
           {value}
         </Select.Option>

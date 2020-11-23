@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Col, Button, InputNumber, Row } from 'antd';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { CentrosCuadrados } from 'random-number-gen';
+import copy from 'copy-to-clipboard';
 import NumberList from '../tools/number_list/NumberList';
 
 const CentrosCuadradosForm = () => {
@@ -12,6 +15,11 @@ const CentrosCuadradosForm = () => {
 
   const onFinish = () => {
     const result = cc.getRandomNumbers(seed, quantity);
+    let accString = '';
+    result.randoms.forEach((num: number) => {
+      accString = `${accString + num}\n`;
+    });
+    copy(accString);
     setNumbers(result.randoms);
   };
 

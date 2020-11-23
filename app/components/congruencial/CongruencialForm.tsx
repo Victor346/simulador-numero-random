@@ -4,7 +4,10 @@ import {
   CongruencialLineal,
   KolmogorovSmirnov,
   ChiCuadrada,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
 } from 'random-number-gen';
+import copy from 'copy-to-clipboard';
 import NumberList from '../tools/number_list/NumberList';
 import Feedback from '../tools/feedback/Feedback';
 
@@ -80,6 +83,11 @@ const CongruencialForm = () => {
       module,
       quantity
     );
+    let accString = '';
+    result.randoms.forEach((num: number) => {
+      accString = `${accString + num}\n`;
+    });
+    copy(accString);
     setNumbers(result.randoms);
 
     const ks = new KolmogorovSmirnov();
@@ -106,6 +114,7 @@ const CongruencialForm = () => {
     const chiOptions: JSX.Element[] = [];
     chiTable.forEach((value, index) => {
       chiOptions.push(
+        // eslint-disable-next-line react/no-array-index-key
         <Select.Option value={value} key={index}>
           {value}
         </Select.Option>
@@ -118,7 +127,10 @@ const CongruencialForm = () => {
     const kolmogorovOptions: JSX.Element[] = [];
     kolmogorovTable.forEach((value, index) => {
       kolmogorovOptions.push(
-        <Select.Option value={value} key={index}>{value}</Select.Option>
+        // eslint-disable-next-line react/no-array-index-key
+        <Select.Option value={value} key={index}>
+          {value}
+        </Select.Option>
       );
     });
     return kolmogorovOptions;
